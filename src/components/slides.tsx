@@ -1,7 +1,7 @@
 import { SlideLayout } from "./SlideLayout";
 import type { ReactNode } from "react";
 
-const TOTAL = 18;
+const TOTAL = 17;
 
 const KICKER = (props: { children: ReactNode }) => (
   <div className="slide-kicker mb-8">{props.children}</div>
@@ -266,7 +266,7 @@ function Slide8() {
   const items = [
     { t: "Speed", v: "Weeks → Hours", d: "Compressed cycle time" },
     { t: "Quality", v: "Consistent", d: "Reviews & test coverage" },
-    { t: "Scale", v: "N stories ∥", d: "Many in parallel" },
+    { t: "Flow", v: "End-to-End", d: "One story, full story, complete" },
     { t: "Cost", v: "↓ Effort", d: "Reduced repetitive work" },
   ];
   return (
@@ -509,8 +509,8 @@ function Slide14() {
     "Story Created", "Scrum Master", "Solution Architect",
     "★ Architecture Review", "Test Writer", "Java Implementer",
     "Test Runner", "Reviewer", "Pipeline Monitor",
-    "★ Merge Approval", "Docker Builder", "AWS Deployment",
-    "Verification", "Performance Tests", "Jira Updated", "Done ✓",
+    "★ Merge Approval", "Docker Builder", "★ Deployment Approval",
+    "AWS Deployment", "Verification", "Performance Tests", "Done ✓",
   ];
   return (
     <SlideLayout pageNumber={14} totalPages={TOTAL} footerLeft="End-to-End Execution">
@@ -554,23 +554,28 @@ function Slide15() {
         <KICKER>13 — Oversight</KICKER>
         <h2 className="slide-title">Humans stay in control.</h2>
         <div className="mt-16 flex-1 flex flex-col justify-center gap-8">
-          <div className="relative h-[180px] slide-card-2 rounded-2xl flex items-center px-12 overflow-hidden">
+          <div className="relative h-[180px] slide-card-2 rounded-2xl flex items-center overflow-hidden">
             <div className="absolute inset-0 flex">
               <div className="flex-1 bg-[color:var(--slide-primary)]/10" />
-              <div className="w-[280px] bg-[color:var(--slide-accent)]/25 border-x border-[color:var(--slide-accent)]/50 flex flex-col items-center justify-center">
+              <div className="w-[240px] bg-[color:var(--slide-accent)]/25 border-x border-[color:var(--slide-accent)]/50 flex flex-col items-center justify-center">
                 <div className="slide-kicker !text-[color:var(--slide-accent)]">Human Gate 1</div>
-                <div className="text-[26px] font-medium mt-2">Architecture Review</div>
+                <div className="text-[24px] font-medium mt-2 text-center px-2">Architecture Review</div>
               </div>
               <div className="flex-1 bg-[color:var(--slide-primary)]/10" />
-              <div className="w-[280px] bg-[color:var(--slide-accent)]/25 border-x border-[color:var(--slide-accent)]/50 flex flex-col items-center justify-center">
+              <div className="w-[240px] bg-[color:var(--slide-accent)]/25 border-x border-[color:var(--slide-accent)]/50 flex flex-col items-center justify-center">
                 <div className="slide-kicker !text-[color:var(--slide-accent)]">Human Gate 2</div>
-                <div className="text-[26px] font-medium mt-2">Merge Approval</div>
+                <div className="text-[24px] font-medium mt-2 text-center px-2">Merge Approval</div>
+              </div>
+              <div className="flex-1 bg-[color:var(--slide-primary)]/10" />
+              <div className="w-[240px] bg-[color:var(--slide-accent)]/25 border-x border-[color:var(--slide-accent)]/50 flex flex-col items-center justify-center">
+                <div className="slide-kicker !text-[color:var(--slide-accent)]">Human Gate 3</div>
+                <div className="text-[24px] font-medium mt-2 text-center px-2">Deployment Approval</div>
               </div>
               <div className="flex-1 bg-[color:var(--slide-primary)]/10" />
             </div>
           </div>
-          <div className="flex justify-between slide-chrome px-2">
-            <span>Autonomous</span><span>Human</span><span>Autonomous</span><span>Human</span><span>Autonomous</span>
+          <div className="grid grid-cols-7 slide-chrome text-center">
+            <span>Autonomous</span><span className="text-accent-slide">Human</span><span>Autonomous</span><span className="text-accent-slide">Human</span><span>Autonomous</span><span className="text-accent-slide">Human</span><span>Autonomous</span>
           </div>
           <p className="text-center text-[44px] font-medium italic mt-8" style={{ fontFamily: "var(--font-display)" }}>
             Autonomy <span className="text-primary-slide">at scale</span>. Control <span className="text-accent-slide">where it matters.</span>
@@ -581,57 +586,8 @@ function Slide15() {
   );
 }
 
-/* ============ 16: INVESTMENT & ROI ============ */
+/* ============ 16: CONCLUSION ============ */
 function Slide16() {
-  return (
-    <SlideLayout pageNumber={16} totalPages={TOTAL} footerLeft="Investment & ROI">
-      <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>14 — Economics</KICKER>
-        <h2 className="slide-title">Investment & ROI.</h2>
-        <div className="grid grid-cols-3 gap-6 mt-14">
-          <div className="slide-card p-10">
-            <div className="slide-kicker">LLM Usage</div>
-            <div className="mt-8 space-y-5">
-              {[
-                { m: "Claude Opus", d: "Complex reasoning" },
-                { m: "Claude Sonnet", d: "Daily agent execution" },
-                { m: "Claude Haiku", d: "Fast lightweight tasks" },
-              ].map((x) => (
-                <div key={x.m} className="flex items-baseline justify-between border-b border-slide pb-4">
-                  <div className="text-[26px] font-medium">{x.m}</div>
-                  <div className="slide-caption">{x.d}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="slide-card p-10">
-            <div className="slide-kicker">Infrastructure</div>
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              {["AWS EC2", "SSM", "GitLab", "Jenkins", "SonarQube", "MCP Servers"].map((x) => (
-                <div key={x} className="px-4 py-3 rounded-lg slide-card-2 text-[20px] text-center font-mono">{x}</div>
-              ))}
-            </div>
-          </div>
-          <div className="p-10 rounded-2xl bg-[color:var(--slide-primary)]/10 border border-[color:var(--slide-primary)]/50">
-            <div className="slide-kicker">Storage</div>
-            <div className="mt-8 text-[34px] font-medium" style={{ fontFamily: "var(--font-display)" }}>Token Logs</div>
-            <p className="slide-caption mt-3">Full traceability per agent, per story, per run.</p>
-            <div className="mt-10 text-[80px] font-medium text-primary-slide leading-none" style={{ fontFamily: "var(--font-display)" }}>↓ Effort</div>
-          </div>
-        </div>
-        <div className="mt-auto pt-12 border-t border-slide max-w-[1600px]">
-          <p className="slide-body-lg text-muted-slide">
-            Initial investment in AI infrastructure enables substantial reductions
-            in <span className="text-slide">engineering effort, review cycles, and delivery time.</span>
-          </p>
-        </div>
-      </div>
-    </SlideLayout>
-  );
-}
-
-/* ============ 17: CONCLUSION ============ */
-function Slide17() {
   const takeaways = [
     "EdgeFabric demonstrates a production-grade distributed platform.",
     "AI Agents transform delivery from sequential workflows into autonomous execution.",
@@ -640,10 +596,10 @@ function Slide17() {
     "Agentic SDLC significantly improves speed, consistency, and scalability.",
   ];
   return (
-    <SlideLayout pageNumber={17} totalPages={TOTAL} footerLeft="Conclusion">
+    <SlideLayout pageNumber={16} totalPages={TOTAL} footerLeft="Conclusion">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] grid grid-cols-12 gap-12">
         <div className="col-span-5 flex flex-col">
-          <KICKER>15 — Conclusion</KICKER>
+          <KICKER>14 — Conclusion</KICKER>
           <h2 className="slide-title">Key takeaways.</h2>
           <div className="mt-auto pt-12">
             <p className="text-[36px] font-medium italic leading-tight" style={{ fontFamily: "var(--font-display)" }}>
@@ -666,9 +622,9 @@ function Slide17() {
 }
 
 /* ============ 18: THANK YOU ============ */
-function Slide18() {
+function Slide17() {
   return (
-    <SlideLayout pageNumber={18} totalPages={TOTAL} variant="hero" footerLeft="Thank You">
+    <SlideLayout pageNumber={17} totalPages={TOTAL} variant="hero" footerLeft="Thank You">
       <div className="absolute inset-0 px-[120px] flex flex-col justify-center">
         <div className="slide-kicker mb-10">— Fin —</div>
         <h1 className="slide-title-lg">
@@ -705,7 +661,6 @@ export const slides = [
   { id: 13, title: "The Agent Team", Component: Slide13 },
   { id: 14, title: "End-to-End Execution", Component: Slide14 },
   { id: 15, title: "Humans in Control", Component: Slide15 },
-  { id: 16, title: "Investment & ROI", Component: Slide16 },
-  { id: 17, title: "Conclusion", Component: Slide17 },
-  { id: 18, title: "Thank You", Component: Slide18 },
+  { id: 16, title: "Conclusion", Component: Slide16 },
+  { id: 17, title: "Thank You", Component: Slide17 },
 ];
