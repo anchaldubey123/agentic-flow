@@ -1,7 +1,7 @@
 import { SlideLayout } from "./SlideLayout";
 import type { ReactNode } from "react";
 
-const TOTAL = 18;
+const TOTAL = 19;
 
 const KICKER = (props: { children: ReactNode }) => (
   <div className="slide-kicker mb-8">{props.children}</div>
@@ -178,10 +178,89 @@ function Slide4() {
   );
 }
 
-/* ============ 5: SECTION DIVIDER ============ */
+/* ============ 5: OBSERVABILITY LAYER ============ */
 function Slide5() {
+  const pillars = [
+    {
+      title: "Logs",
+      points: [
+        "Structured JSON logs via Logstash Logback Encoder",
+        "Every operation tagged with traceId, nodeId, operation, duration, result",
+        "Streamed to CloudWatch — queryable in real time",
+      ],
+    },
+    {
+      title: "Metrics",
+      points: [
+        "Prometheus-scraped SLO metrics per node",
+        "p50 / p90 / p95 / p99 latency profiles",
+        "Cluster health snapshot via Observe API",
+      ],
+    },
+    {
+      title: "Traces",
+      points: [
+        "Distributed trace IDs across agent handoffs",
+        "End-to-end request flow from Load Balancer → Cache Node",
+        "Gossip sync events tracked per peer",
+      ],
+    },
+  ];
+
+  const insights = [
+    { label: "Self-Healing Signals", desc: "Agents read CloudWatch + Cloud Map to detect drift and trigger remediation" },
+    { label: "Agentic Ops", desc: "explain_cluster_health, explain_latency_spike, explain_slo_breach — AI-readable diagnostics" },
+    { label: "Zero-Blind-Spot Design", desc: "Every cache PUT/GET, gossip sync, and deployment logged with structured context" },
+  ];
+
   return (
-    <SlideLayout pageNumber={5} totalPages={TOTAL} variant="section" footerLeft="Section Divider">
+    <SlideLayout pageNumber={5} totalPages={TOTAL} footerLeft="Observability Layer">
+      <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
+        <KICKER>04 — Observability</KICKER>
+        <h2 className="slide-title max-w-[1500px]">Observability Layer</h2>
+        <p className="slide-body-lg mt-6 text-muted-slide max-w-[1500px]">
+          Real-time visibility into every agent action and system event.
+        </p>
+
+        <div className="grid grid-cols-3 gap-6 mt-10">
+          {pillars.map((p) => (
+            <div key={p.title} className="slide-card p-8 flex flex-col">
+              <div className="slide-kicker !text-[color:var(--slide-accent)] mb-5">{p.title}</div>
+              <ul className="space-y-3 slide-body">
+                {p.points.map((pt) => (
+                  <li key={pt} className="flex items-start gap-3">
+                    <span className="text-primary-slide mt-1">•</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-3 gap-6 mt-6">
+          {insights.map((i) => (
+            <div key={i.label} className="p-6 rounded-xl bg-[color:var(--slide-primary)]/10 border border-[color:var(--slide-primary)]/40 flex flex-col">
+              <div className="slide-kicker !text-[color:var(--slide-primary)]">{i.label}</div>
+              <p className="slide-body mt-3 text-muted-slide">{i.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-auto pt-6 border-t border-slide max-w-[1500px]">
+          <p className="slide-body-lg text-muted-slide italic">
+            "Observability is not an afterthought — it is the feedback loop that makes autonomous agents trustworthy."
+          </p>
+        </div>
+      </div>
+    </SlideLayout>
+  );
+}
+
+/* ============ 6: SECTION DIVIDER ============ */
+function Slide6() {
+  return (
+    <SlideLayout pageNumber={6} totalPages={TOTAL} variant="section" footerLeft="Section Divider">
       <div className="absolute inset-0 px-[140px] flex flex-col justify-center">
         <div className="slide-kicker mb-10 !text-[color:var(--slide-accent)]">Section 01</div>
         <h2 className="slide-title-lg max-w-[1500px]">
@@ -197,17 +276,17 @@ function Slide5() {
   );
 }
 
-/* ============ 6: WHAT IS AGENT ============ */
-function Slide6() {
+/* ============ 7: WHAT IS AGENT ============ */
+function Slide7() {
   const cols = [
     { name: "Traditional AI", desc: "Responds to prompts", highlight: false },
     { name: "AI Assistant", desc: "Helps when asked", highlight: false },
     { name: "AI Agent", desc: "Acts independently toward objectives", highlight: true },
   ];
   return (
-    <SlideLayout pageNumber={6} totalPages={TOTAL} footerLeft="What is an AI Agent?">
+    <SlideLayout pageNumber={7} totalPages={TOTAL} footerLeft="What is an AI Agent?">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>04 — Definition</KICKER>
+        <KICKER>05 — Definition</KICKER>
         <h2 className="slide-title max-w-[1500px]">
           An autonomous software system that <span className="text-primary-slide">reasons, plans and acts.</span>
         </h2>
@@ -235,8 +314,8 @@ function Slide6() {
   );
 }
 
-/* ============ 7: CHARACTERISTICS ============ */
-function Slide7() {
+/* ============ 8: CHARACTERISTICS ============ */
+function Slide8() {
   const items = [
     { t: "Reasoning", d: "Plans solutions step by step" },
     { t: "Planning", d: "Breaks goals into tasks" },
@@ -247,9 +326,9 @@ function Slide7() {
     { t: "State Mgmt", d: "Maintains execution progress" },
   ];
   return (
-    <SlideLayout pageNumber={7} totalPages={TOTAL} footerLeft="Characteristics">
+    <SlideLayout pageNumber={8} totalPages={TOTAL} footerLeft="Characteristics">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>05 — Characteristics</KICKER>
+        <KICKER>06 — Characteristics</KICKER>
         <h2 className="slide-title">Seven traits of an agent.</h2>
         <div className="grid grid-cols-4 gap-6 mt-16">
           {items.map((it, i) => (
@@ -273,12 +352,12 @@ function Slide7() {
   );
 }
 
-/* ============ 8: SINGLE vs MULTI ============ */
-function Slide8() {
+/* ============ 9: SINGLE vs MULTI ============ */
+function Slide9() {
   return (
-    <SlideLayout pageNumber={8} totalPages={TOTAL} footerLeft="Single vs Multi-Agent">
+    <SlideLayout pageNumber={9} totalPages={TOTAL} footerLeft="Single vs Multi-Agent">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>06 — Architecture</KICKER>
+        <KICKER>07 — Architecture</KICKER>
         <h2 className="slide-title">Single agent vs. <span className="text-primary-slide">multi-agent systems.</span></h2>
         <div className="grid grid-cols-12 gap-8 mt-14 flex-1">
           {/* single */}
@@ -316,8 +395,8 @@ function Slide8() {
   );
 }
 
-/* ============ 9: WHY AGENTIC ============ */
-function Slide9() {
+/* ============ 10: WHY AGENTIC ============ */
+function Slide10() {
   const items = [
     { t: "Speed", v: "Weeks → Hours", d: "Compressed cycle time" },
     { t: "Quality", v: "Consistent", d: "Reviews & test coverage" },
@@ -325,9 +404,9 @@ function Slide9() {
     { t: "Cost", v: "↓ Effort", d: "Reduced repetitive work" },
   ];
   return (
-    <SlideLayout pageNumber={9} totalPages={TOTAL} footerLeft="Why Agentic Workflows">
+    <SlideLayout pageNumber={10} totalPages={TOTAL} footerLeft="Why Agentic Workflows">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>07 — Value</KICKER>
+        <KICKER>08 — Value</KICKER>
         <h2 className="slide-title">Why agentic workflows?</h2>
         <div className="grid grid-cols-4 gap-6 mt-16">
           {items.map((i, idx) => (
@@ -349,12 +428,12 @@ function Slide9() {
   );
 }
 
-/* ============ 10: MCP ============ */
-function Slide10() {
+/* ============ 11: MCP ============ */
+function Slide11() {
   return (
-    <SlideLayout pageNumber={10} totalPages={TOTAL} footerLeft="MCP">
+    <SlideLayout pageNumber={11} totalPages={TOTAL} footerLeft="MCP">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>08 — Protocol</KICKER>
+        <KICKER>09 — Protocol</KICKER>
         <h2 className="slide-title">MCP — the standard language for agents.</h2>
         <p className="slide-body mt-6 text-muted-slide max-w-[1500px]">
           A standardized way for AI agents to interact with enterprise systems,
@@ -394,14 +473,14 @@ function Slide10() {
   );
 }
 
-/* ============ 11: TRADITIONAL vs AGENTIC SDLC ============ */
-function Slide11() {
+/* ============ 12: TRADITIONAL vs AGENTIC SDLC ============ */
+function Slide12() {
   const trad = ["Story", "BA", "Architect", "Developer", "Tester", "Reviewer", "DevOps"];
   const ag = ["Story", "Orchestrator", "Agents", "CI/CD", "Verification", "Done"];
   return (
-    <SlideLayout pageNumber={11} totalPages={TOTAL} footerLeft="Traditional vs Agentic SDLC">
+    <SlideLayout pageNumber={12} totalPages={TOTAL} footerLeft="Traditional vs Agentic SDLC">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>09 — Comparison</KICKER>
+        <KICKER>10 — Comparison</KICKER>
         <h2 className="slide-title">Two pipelines, two outcomes.</h2>
         <div className="grid grid-cols-2 gap-10 mt-12 flex-1">
           {/* Traditional */}
@@ -452,17 +531,17 @@ function Slide11() {
   );
 }
 
-/* ============ 12: ARCHITECTURE ============ */
-function Slide12() {
+/* ============ 13: ARCHITECTURE ============ */
+function Slide13() {
   const layers = [
     { t: "SDLC Orchestrator", s: "Central Brain", items: ["Plans, routes, supervises every story"], tone: "accent" as const },
     { t: "Specialized Agents", s: "Execution Layer", items: ["Scrum Master", "Architect", "Developer", "Tester", "Reviewer", "Deployment"], tone: "primary" as const },
     { t: "MCP Tool Servers", s: "Integration Surface", items: ["Jira", "GitLab", "Jenkins", "AWS", "SonarQube", "Codebase"], tone: "neutral" as const },
   ];
   return (
-    <SlideLayout pageNumber={12} totalPages={TOTAL} footerLeft="Architecture">
+    <SlideLayout pageNumber={13} totalPages={TOTAL} footerLeft="Architecture">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>10 — System</KICKER>
+        <KICKER>11 — System</KICKER>
         <h2 className="slide-title">Our Agentic SDLC architecture.</h2>
         <div className="mt-16 space-y-6 flex-1 flex flex-col justify-center">
           {layers.map((l, i) => (
@@ -492,8 +571,8 @@ function Slide12() {
   );
 }
 
-/* ============ 13: ENTERPRISE MCP ============ */
-function Slide13() {
+/* ============ 14: ENTERPRISE MCP ============ */
+function Slide14() {
   const items = [
     { t: "Jira MCP", d: "Sprint management" },
     { t: "GitLab MCP", d: "MR creation" },
@@ -503,9 +582,9 @@ function Slide13() {
     { t: "Codebase MCP", d: "Symbol search" },
   ];
   return (
-    <SlideLayout pageNumber={13} totalPages={TOTAL} footerLeft="Enterprise MCP Integrations">
+    <SlideLayout pageNumber={14} totalPages={TOTAL} footerLeft="Enterprise MCP Integrations">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>11 — Integrations</KICKER>
+        <KICKER>12 — Integrations</KICKER>
         <h2 className="slide-title">Enterprise MCP integrations.</h2>
         <div className="grid grid-cols-3 gap-8 mt-16">
           {items.map((it, i) => (
@@ -524,8 +603,8 @@ function Slide13() {
   );
 }
 
-/* ============ 14: AGENT TEAM ============ */
-function Slide14() {
+/* ============ 15: AGENT TEAM ============ */
+function Slide15() {
   const agents = [
     "Scrum Master", "Solution Architect", "Test Writer",
     "Java Implementer", "Test Runner", "Code Reviewer",
@@ -533,9 +612,9 @@ function Slide14() {
     "Deployment Verifier", "Performance Tester", "Dead Code Cleaner",
   ];
   return (
-    <SlideLayout pageNumber={14} totalPages={TOTAL} footerLeft="The Agent Team">
+    <SlideLayout pageNumber={15} totalPages={TOTAL} footerLeft="The Agent Team">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>12 — The Team</KICKER>
+        <KICKER>13 — The Team</KICKER>
         <div className="flex items-end justify-between">
           <h2 className="slide-title">Twelve agents, one delivery system.</h2>
           <div className="text-[120px] font-medium text-primary-slide leading-none" style={{ fontFamily: "var(--font-display)" }}>12</div>
@@ -558,8 +637,8 @@ function Slide14() {
   );
 }
 
-/* ============ 15: END-TO-END EXECUTION ============ */
-function Slide15() {
+/* ============ 16: END-TO-END EXECUTION ============ */
+function Slide16() {
   const steps = [
     "Story Created", "Scrum Master", "Solution Architect",
     "★ Architecture Review", "Test Writer", "Java Implementer",
@@ -568,9 +647,9 @@ function Slide15() {
     "AWS Deployment", "Verification", "Performance Tests", "Done ✓",
   ];
   return (
-    <SlideLayout pageNumber={15} totalPages={TOTAL} footerLeft="End-to-End Execution">
+    <SlideLayout pageNumber={16} totalPages={TOTAL} footerLeft="End-to-End Execution">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>13 — Flow</KICKER>
+        <KICKER>14 — Flow</KICKER>
         <h2 className="slide-title">One story. <span className="text-primary-slide">Zero manual steps.</span></h2>
         <div className="mt-16 flex-1 flex items-center">
           <div className="w-full grid grid-cols-8 gap-3">
@@ -601,12 +680,12 @@ function Slide15() {
   );
 }
 
-/* ============ 16: HUMANS IN CONTROL ============ */
-function Slide16() {
+/* ============ 17: HUMANS IN CONTROL ============ */
+function Slide17() {
   return (
-    <SlideLayout pageNumber={16} totalPages={TOTAL} footerLeft="Humans Stay in Control">
+    <SlideLayout pageNumber={17} totalPages={TOTAL} footerLeft="Humans Stay in Control">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
-        <KICKER>14 — Oversight</KICKER>
+        <KICKER>15 — Oversight</KICKER>
         <h2 className="slide-title">Humans stay in control.</h2>
         <div className="mt-16 flex-1 flex flex-col justify-center gap-8">
           <div className="relative h-[180px] slide-card-2 rounded-2xl flex items-center overflow-hidden">
@@ -641,8 +720,8 @@ function Slide16() {
   );
 }
 
-/* ============ 17: CONCLUSION ============ */
-function Slide17() {
+/* ============ 18: CONCLUSION ============ */
+function Slide18() {
   const takeaways = [
     "EdgeFabric demonstrates a production-grade distributed platform.",
     "AI Agents transform delivery from sequential workflows into autonomous execution.",
@@ -651,10 +730,10 @@ function Slide17() {
     "Agentic SDLC significantly improves speed, consistency, and scalability.",
   ];
   return (
-    <SlideLayout pageNumber={17} totalPages={TOTAL} footerLeft="Conclusion">
+    <SlideLayout pageNumber={18} totalPages={TOTAL} footerLeft="Conclusion">
       <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] grid grid-cols-12 gap-12">
         <div className="col-span-5 flex flex-col">
-          <KICKER>15 — Conclusion</KICKER>
+          <KICKER>16 — Conclusion</KICKER>
           <h2 className="slide-title">Key takeaways.</h2>
           <div className="mt-auto pt-12">
             <p className="text-[36px] font-medium italic leading-tight" style={{ fontFamily: "var(--font-display)" }}>
@@ -676,10 +755,10 @@ function Slide17() {
   );
 }
 
-/* ============ 18: THANK YOU ============ */
-function Slide18() {
+/* ============ 19: THANK YOU ============ */
+function Slide19() {
   return (
-    <SlideLayout pageNumber={18} totalPages={TOTAL} variant="hero" footerLeft="Thank You">
+    <SlideLayout pageNumber={19} totalPages={TOTAL} variant="hero" footerLeft="Thank You">
       <div className="absolute inset-0 px-[120px] flex flex-col justify-center">
         <div className="slide-kicker mb-10">— Fin —</div>
         <h1 className="slide-title-lg">
@@ -705,18 +784,19 @@ export const slides = [
   { id: 2, title: "Why EdgeFabric?", Component: Slide2 },
   { id: 3, title: "Introducing EdgeFabric", Component: Slide3 },
   { id: 4, title: "Why EdgeFabric Matters", Component: Slide4 },
-  { id: 5, title: "Section: AI Agents", Component: Slide5 },
-  { id: 6, title: "What is an AI Agent?", Component: Slide6 },
-  { id: 7, title: "Characteristics", Component: Slide7 },
-  { id: 8, title: "Single vs Multi-Agent", Component: Slide8 },
-  { id: 9, title: "Why Agentic Workflows", Component: Slide9 },
-  { id: 10, title: "MCP", Component: Slide10 },
-  { id: 11, title: "Traditional vs Agentic SDLC", Component: Slide11 },
-  { id: 12, title: "Architecture", Component: Slide12 },
-  { id: 13, title: "Enterprise MCP Integrations", Component: Slide13 },
-  { id: 14, title: "The Agent Team", Component: Slide14 },
-  { id: 15, title: "End-to-End Execution", Component: Slide15 },
-  { id: 16, title: "Humans in Control", Component: Slide16 },
-  { id: 17, title: "Conclusion", Component: Slide17 },
-  { id: 18, title: "Thank You", Component: Slide18 },
+  { id: 5, title: "Observability Layer", Component: Slide5 },
+  { id: 6, title: "Section: AI Agents", Component: Slide6 },
+  { id: 7, title: "What is an AI Agent?", Component: Slide7 },
+  { id: 8, title: "Characteristics", Component: Slide8 },
+  { id: 9, title: "Single vs Multi-Agent", Component: Slide9 },
+  { id: 10, title: "Why Agentic Workflows", Component: Slide10 },
+  { id: 11, title: "MCP", Component: Slide11 },
+  { id: 12, title: "Traditional vs Agentic SDLC", Component: Slide12 },
+  { id: 13, title: "Architecture", Component: Slide13 },
+  { id: 14, title: "Enterprise MCP Integrations", Component: Slide14 },
+  { id: 15, title: "The Agent Team", Component: Slide15 },
+  { id: 16, title: "End-to-End Execution", Component: Slide16 },
+  { id: 17, title: "Humans in Control", Component: Slide17 },
+  { id: 18, title: "Conclusion", Component: Slide18 },
+  { id: 19, title: "Thank You", Component: Slide19 },
 ];
