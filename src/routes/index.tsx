@@ -1,3 +1,4 @@
+import * as React from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { z } from "zod";
@@ -82,7 +83,7 @@ function EditorView({
   onGrid: () => void;
   onPresent: () => void;
   onJump: (n: number) => void;
-  Slide: () => JSX.Element;
+  Slide: () => React.ReactElement;
 }) {
   return (
     <div className="h-screen w-screen flex flex-col bg-background text-foreground overflow-hidden">
@@ -176,7 +177,7 @@ function GridView({ current, onPick, onClose }: { current: number; onPick: (n: n
   );
 }
 
-function PresentView({ current, onNext, onPrev, onExit, Slide }: { current: number; onNext: () => void; onPrev: () => void; onExit: () => void; Slide: () => JSX.Element }) {
+function PresentView({ current, onNext, onPrev, onExit, Slide }: { current: number; onNext: () => void; onPrev: () => void; onExit: () => void; Slide: () => React.ReactElement }) {
   const [showChrome, setShowChrome] = useState(true);
   const timer = useRef<number | null>(null);
   useEffect(() => {
