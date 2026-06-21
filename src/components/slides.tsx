@@ -641,18 +641,18 @@ function Slide15() {
   ];
   return (
     <SlideLayout pageNumber={15} totalPages={TOTAL} footerLeft="Enterprise MCP Integrations">
-      <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
+      <div className="absolute inset-0 px-[120px] pt-[150px] pb-[100px] flex flex-col">
         <KICKER>13 — Integrations</KICKER>
         <h2 className="slide-title">Enterprise MCP integrations.</h2>
-        <div className="grid grid-cols-3 gap-8 mt-16">
+        <div className="grid grid-cols-3 gap-5 mt-8 flex-1">
           {items.map((it, i) => (
-            <div key={it.t} className="slide-card p-12 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-[160px] h-[160px] rounded-full bg-[color:var(--slide-primary)]/10 blur-2xl" />
+            <div key={it.t} className="slide-card p-8 relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 w-[120px] h-[120px] rounded-full bg-[color:var(--slide-primary)]/10 blur-2xl" />
               <span className="slide-kicker">0{i + 1}</span>
-              <div className="mt-10 text-[44px] font-medium" style={{ fontFamily: "var(--font-display)" }}>{it.t}</div>
-              <p className="slide-body mt-3 text-muted-slide">{it.d}</p>
-              <div className="mt-10 h-px bg-[color:var(--slide-primary)]/30" />
-              <div className="mt-4 slide-chrome">MCP</div>
+              <div className="mt-6 text-[36px] font-medium" style={{ fontFamily: "var(--font-display)" }}>{it.t}</div>
+              <p className="slide-body mt-2 text-muted-slide">{it.d}</p>
+              <div className="mt-auto pt-5 h-px bg-[color:var(--slide-primary)]/30" />
+              <div className="mt-3 slide-chrome">MCP</div>
             </div>
           ))}
         </div>
