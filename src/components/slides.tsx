@@ -38,7 +38,62 @@ function Slide1() {
   );
 }
 
-/* ============ 2: INTRO EDGEFABRIC ============ */
+/* ============ 2: WHY EDGEFABRIC ============ */
+function Slide2() {
+  const challenges = [
+    { icon: "🚨", label: "Database Overload" },
+    { icon: "⚡", label: "High Response Latency" },
+    { icon: "📈", label: "Traffic Spikes" },
+    { icon: "💥", label: "Single Points of Failure" },
+    { icon: "🔄", label: "Difficult Horizontal Scaling" },
+    { icon: "⏳", label: "Stale Data Issues" },
+  ];
+  const solutions = [
+    "Intelligent request routing",
+    "Distributed in-memory caching",
+    "Automatic failover",
+    "Dynamic cluster membership",
+    "Efficient data distribution",
+  ];
+  return (
+    <SlideLayout pageNumber={2} totalPages={TOTAL} footerLeft="Why EdgeFabric?">
+      <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
+        <KICKER>01 — Problem</KICKER>
+        <h2 className="slide-title">What problem does <span className="text-primary-slide">EdgeFabric</span> solve?</h2>
+        <p className="slide-body-lg mt-8 text-muted-slide max-w-[1500px]">
+          Many applications experience performance bottlenecks due to repeated database access
+          and increasing traffic demands.
+        </p>
+        <div className="grid grid-cols-2 gap-10 mt-14 flex-1">
+          <div className="slide-card p-10 flex flex-col">
+            <div className="slide-kicker !text-[color:var(--slide-accent)]">Common Challenges</div>
+            <ul className="mt-8 space-y-4 slide-body">
+              {challenges.map((c) => (
+                <li key={c.label} className="flex items-center gap-4">
+                  <span className="text-3xl">{c.icon}</span>
+                  <span>{c.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="p-10 rounded-2xl bg-[color:var(--slide-primary)]/10 border border-[color:var(--slide-primary)]/50 flex flex-col">
+            <div className="slide-kicker">How EdgeFabric Addresses These</div>
+            <ul className="mt-8 space-y-4 slide-body">
+              {solutions.map((s) => (
+                <li key={s} className="flex items-center gap-4 text-primary-slide">
+                  <span>+</span>
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </SlideLayout>
+  );
+}
+
+/* ============ 3: INTRO EDGEFABRIC ============ */
 function Slide3() {
   const components = [
     { name: "Load Balancer", port: "Port 8080", desc: "Consistent hash based routing" },
