@@ -178,7 +178,86 @@ function Slide4() {
   );
 }
 
-/* ============ 5: SECTION DIVIDER ============ */
+/* ============ 5: OBSERVABILITY LAYER ============ */
+function Slide5() {
+  const pillars = [
+    {
+      title: "Logs",
+      points: [
+        "Structured JSON logs via Logstash Logback Encoder",
+        "Every operation tagged with traceId, nodeId, operation, duration, result",
+        "Streamed to CloudWatch — queryable in real time",
+      ],
+    },
+    {
+      title: "Metrics",
+      points: [
+        "Prometheus-scraped SLO metrics per node",
+        "p50 / p90 / p95 / p99 latency profiles",
+        "Cluster health snapshot via Observe API",
+      ],
+    },
+    {
+      title: "Traces",
+      points: [
+        "Distributed trace IDs across agent handoffs",
+        "End-to-end request flow from Load Balancer → Cache Node",
+        "Gossip sync events tracked per peer",
+      ],
+    },
+  ];
+
+  const insights = [
+    { label: "Self-Healing Signals", desc: "Agents read CloudWatch + Cloud Map to detect drift and trigger remediation" },
+    { label: "Agentic Ops", desc: "explain_cluster_health, explain_latency_spike, explain_slo_breach — AI-readable diagnostics" },
+    { label: "Zero-Blind-Spot Design", desc: "Every cache PUT/GET, gossip sync, and deployment logged with structured context" },
+  ];
+
+  return (
+    <SlideLayout pageNumber={5} totalPages={TOTAL} footerLeft="Observability Layer">
+      <div className="absolute inset-0 px-[120px] pt-[180px] pb-[140px] flex flex-col">
+        <KICKER>04 — Observability</KICKER>
+        <h2 className="slide-title max-w-[1500px]">Observability Layer</h2>
+        <p className="slide-body-lg mt-6 text-muted-slide max-w-[1500px]">
+          Real-time visibility into every agent action and system event.
+        </p>
+
+        <div className="grid grid-cols-3 gap-6 mt-10">
+          {pillars.map((p) => (
+            <div key={p.title} className="slide-card p-8 flex flex-col">
+              <div className="slide-kicker !text-[color:var(--slide-accent)] mb-5">{p.title}</div>
+              <ul className="space-y-3 slide-body">
+                {p.points.map((pt) => (
+                  <li key={pt} className="flex items-start gap-3">
+                    <span className="text-primary-slide mt-1">•</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-3 gap-6 mt-6">
+          {insights.map((i) => (
+            <div key={i.label} className="p-6 rounded-xl bg-[color:var(--slide-primary)]/10 border border-[color:var(--slide-primary)]/40 flex flex-col">
+              <div className="slide-kicker !text-[color:var(--slide-primary)]">{i.label}</div>
+              <p className="slide-body mt-3 text-muted-slide">{i.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-auto pt-6 border-t border-slide max-w-[1500px]">
+          <p className="slide-body-lg text-muted-slide italic">
+            "Observability is not an afterthought — it is the feedback loop that makes autonomous agents trustworthy."
+          </p>
+        </div>
+      </div>
+    </SlideLayout>
+  );
+}
+
+/* ============ 6: SECTION DIVIDER ============ */
 function Slide6() {
   return (
     <SlideLayout pageNumber={6} totalPages={TOTAL} variant="section" footerLeft="Section Divider">
@@ -197,7 +276,7 @@ function Slide6() {
   );
 }
 
-/* ============ 6: WHAT IS AGENT ============ */
+/* ============ 7: WHAT IS AGENT ============ */
 function Slide7() {
   const cols = [
     { name: "Traditional AI", desc: "Responds to prompts", highlight: false },
@@ -235,7 +314,7 @@ function Slide7() {
   );
 }
 
-/* ============ 7: CHARACTERISTICS ============ */
+/* ============ 8: CHARACTERISTICS ============ */
 function Slide8() {
   const items = [
     { t: "Reasoning", d: "Plans solutions step by step" },
@@ -273,7 +352,7 @@ function Slide8() {
   );
 }
 
-/* ============ 8: SINGLE vs MULTI ============ */
+/* ============ 9: SINGLE vs MULTI ============ */
 function Slide9() {
   return (
     <SlideLayout pageNumber={9} totalPages={TOTAL} footerLeft="Single vs Multi-Agent">
@@ -316,7 +395,7 @@ function Slide9() {
   );
 }
 
-/* ============ 9: WHY AGENTIC ============ */
+/* ============ 10: WHY AGENTIC ============ */
 function Slide10() {
   const items = [
     { t: "Speed", v: "Weeks → Hours", d: "Compressed cycle time" },
@@ -349,7 +428,7 @@ function Slide10() {
   );
 }
 
-/* ============ 10: MCP ============ */
+/* ============ 11: MCP ============ */
 function Slide11() {
   return (
     <SlideLayout pageNumber={11} totalPages={TOTAL} footerLeft="MCP">
@@ -394,7 +473,7 @@ function Slide11() {
   );
 }
 
-/* ============ 11: TRADITIONAL vs AGENTIC SDLC ============ */
+/* ============ 12: TRADITIONAL vs AGENTIC SDLC ============ */
 function Slide12() {
   const trad = ["Story", "BA", "Architect", "Developer", "Tester", "Reviewer", "DevOps"];
   const ag = ["Story", "Orchestrator", "Agents", "CI/CD", "Verification", "Done"];
@@ -452,7 +531,7 @@ function Slide12() {
   );
 }
 
-/* ============ 12: ARCHITECTURE ============ */
+/* ============ 13: ARCHITECTURE ============ */
 function Slide13() {
   const layers = [
     { t: "SDLC Orchestrator", s: "Central Brain", items: ["Plans, routes, supervises every story"], tone: "accent" as const },
@@ -492,7 +571,7 @@ function Slide13() {
   );
 }
 
-/* ============ 13: ENTERPRISE MCP ============ */
+/* ============ 14: ENTERPRISE MCP ============ */
 function Slide14() {
   const items = [
     { t: "Jira MCP", d: "Sprint management" },
@@ -524,7 +603,7 @@ function Slide14() {
   );
 }
 
-/* ============ 14: AGENT TEAM ============ */
+/* ============ 15: AGENT TEAM ============ */
 function Slide15() {
   const agents = [
     "Scrum Master", "Solution Architect", "Test Writer",
@@ -558,7 +637,7 @@ function Slide15() {
   );
 }
 
-/* ============ 15: END-TO-END EXECUTION ============ */
+/* ============ 16: END-TO-END EXECUTION ============ */
 function Slide16() {
   const steps = [
     "Story Created", "Scrum Master", "Solution Architect",
@@ -601,7 +680,7 @@ function Slide16() {
   );
 }
 
-/* ============ 16: HUMANS IN CONTROL ============ */
+/* ============ 17: HUMANS IN CONTROL ============ */
 function Slide17() {
   return (
     <SlideLayout pageNumber={17} totalPages={TOTAL} footerLeft="Humans Stay in Control">
@@ -641,7 +720,7 @@ function Slide17() {
   );
 }
 
-/* ============ 17: CONCLUSION ============ */
+/* ============ 18: CONCLUSION ============ */
 function Slide18() {
   const takeaways = [
     "EdgeFabric demonstrates a production-grade distributed platform.",
@@ -676,7 +755,7 @@ function Slide18() {
   );
 }
 
-/* ============ 18: THANK YOU ============ */
+/* ============ 19: THANK YOU ============ */
 function Slide19() {
   return (
     <SlideLayout pageNumber={19} totalPages={TOTAL} variant="hero" footerLeft="Thank You">
