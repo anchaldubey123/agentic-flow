@@ -327,9 +327,6 @@ function Slide7() {
         </h2>
         <div className="mt-16 h-px w-[300px] bg-[color:var(--slide-accent)]" />
       </div>
-      <div className="absolute right-[120px] top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-[color:var(--slide-accent)]/30 flex items-center justify-center">
-        <div className="w-[260px] h-[260px] rounded-full bg-[color:var(--slide-accent)]/20 backdrop-blur-sm border border-[color:var(--slide-accent)]/40 glow-accent" />
-      </div>
     </SlideLayout>
   );
 }
